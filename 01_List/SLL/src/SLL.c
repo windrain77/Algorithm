@@ -23,6 +23,16 @@ void SLL_DestroyNode(NODE **Node)
 	}
 }
 
+void SLL_ShowAll(NODE *head)
+{
+	NODE *curNode = head;
+	while(curNode)
+	{
+		dlp("data: %p-%d\n", (void*)curNode, curNode->data);
+		curNode = curNode->nextNode;
+	}
+}
+
 void SLL_AppendNode(NODE **head, NODE *newNode)
 {
 	/*If head is NULL, then newNode is head*/
@@ -53,4 +63,25 @@ NODE *SLL_GetNodeAt(NODE *head, int location)
 	}
 
 	return current;
+}
+
+void SLL_RemoveNode(NODE **head, NODE *rmNode)
+{
+	if(*head == rmNode)
+	{
+		*head = rmNode->nextNode;
+	}
+	else
+	{
+		NODE *curNode = *head;
+		while( (NULL != curNode) && (curNode->nextNode != rmNode) )
+		{
+			curNode = curNode->nextNode;
+		}
+
+		if(NULL != curNode)
+		{
+			curNode->nextNode = rmNode->nextNode;
+		}
+	}
 }
