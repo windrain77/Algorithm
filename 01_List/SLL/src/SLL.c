@@ -42,3 +42,15 @@ void SLL_AppendNode(NODE **head, NODE *newNode)
 		tail->nextNode = newNode;
 	}
 }
+
+NODE *SLL_GetNodeAt(NODE *head, int location)
+{
+	NODE *current = head;
+
+	while(current != NULL && (--location) >= 0)
+	{
+		current = current->nextNode;
+	}
+
+	return current;
+}

@@ -10,19 +10,13 @@ int main(int argc, char **argv)
 	dlp("Hello SLL\n");
 
 	NODE *List = NULL;
-	NODE *NewNode = NULL;
+	NODE *MyNode = NULL;
 
-	NewNode = SLL_CreateNewNode(117);
-	SLL_AppendNode(&List, NewNode);
+	SLL_AppendNode(&List, SLL_CreateNewNode(117));
+	SLL_AppendNode(&List, SLL_CreateNewNode(119));
 
-	NewNode = SLL_CreateNewNode(119);
-	SLL_AppendNode(&List, NewNode);
-
-	while(List != NULL)
-	{
-		dlp("(%p)ListData : %d \n", List, List->data);
-		List = List->nextNode;
-	}
+	MyNode = SLL_GetNodeAt(List, 1);
+	dlp("MyNode: %d \n", MyNode->data);
 
 	return 0;
 }
