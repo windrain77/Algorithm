@@ -6,30 +6,20 @@
 
 NODE *SLL_CreateNewNode(int newData)
 {
-	NODE *NewNode = (NODE*)malloc(sizeof(NODE));
+	NODE *newNode = (NODE*)malloc(sizeof(NODE));
 
-	NewNode->data = newData;
-	NewNode->nextNode = NULL;
+	newNode->data = newData;
+	newNode->nextNode = NULL;
 
-	return NewNode;
+	return newNode;
 }
 
-void SLL_DestroyNode(NODE **Node)
+void SLL_DestroyNode(NODE **node)
 {
-	if(*Node)
+	if(*node)
 	{
-		free(*Node);
-		*Node = NULL;
-	}
-}
-
-void SLL_ShowAll(NODE *head)
-{
-	NODE *curNode = head;
-	while(curNode)
-	{
-		dlp("data: %p-%d\n", (void*)curNode, curNode->data);
-		curNode = curNode->nextNode;
+		free(*node);
+		*node = NULL;
 	}
 }
 
@@ -67,13 +57,15 @@ NODE *SLL_GetNodeAt(NODE *head, int location)
 
 void SLL_RemoveNode(NODE **head, NODE *rmNode)
 {
+	NODE *curNode = NULL;
+
 	if(*head == rmNode)
 	{
 		*head = rmNode->nextNode;
 	}
 	else
 	{
-		NODE *curNode = *head;
+		curNode = *head;
 		while( (NULL != curNode) && (curNode->nextNode != rmNode) )
 		{
 			curNode = curNode->nextNode;
@@ -92,6 +84,19 @@ void SLL_InsertAfter(NODE *curNode, NODE *newNode)
 	curNode->nextNode = newNode;
 }
 
+void SLL_InsertNewHead(NODE **head, NODE *newHead)
+{
+	if(NULL == *head)
+	{
+		*head = newHead;
+	}
+	else
+	{
+		newHead->nextNode = *head;
+		*head = newHead;
+	}
+}
+
 int SLL_GetNodeCount(NODE *head)
 {
 	NODE *curNode = head;
@@ -104,5 +109,21 @@ int SLL_GetNodeCount(NODE *head)
 	}
 
 	return nodeCnt;
+}
+
+void SLL_ShowAll(NODE *head)
+{
+	int i =0, nodeCnt = 0;
+	NODE *curNode = NULL;
+
+	if(head)
+	{
+		nodeCnt = SLL_GetNodeCount(head);
+		for(i = 0; i < nodeCnt; i++)
+		{
+			curNode = SLL_GetNodeAt(head, i);
+			dlp("list[%d]: %d\n", i, curNode->data);
+		}
+	}
 }
 

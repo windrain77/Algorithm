@@ -7,12 +7,13 @@ typedef struct NODE {
 } NODE;
 
 NODE *SLL_CreateNewNode(int newData);
-void SLL_DestroyNode(NODE **Node);
-void SLL_ShowAll(NODE *head);
+void SLL_DestroyNode(NODE **node);
 void SLL_AppendNode(NODE **head, NODE *newNode);
 NODE *SLL_GetNodeAt(NODE *head, int location);
-void SLL_RemoveNode(NODE **head, NODE *);
+void SLL_RemoveNode(NODE **head, NODE *rmNode);
 void SLL_InsertAfter(NODE *curNode, NODE *newNode);
+void SLL_InsertNewHead(NODE **head, NODE *newHead);
 int  SLL_GetNodeCount(NODE *head);
+void SLL_ShowAll(NODE *head);
 
 #endif // __SLL_H__
