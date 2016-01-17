@@ -10,23 +10,21 @@ int main(int argc, char **argv)
 	dlp("Hello SLL\n");
 
 	NODE *List = NULL;
-	NODE *MyNode = NULL;
 
 	SLL_AppendNode(&List, SLL_CreateNewNode(117));
 	SLL_AppendNode(&List, SLL_CreateNewNode(119));
 	SLL_AppendNode(&List, SLL_CreateNewNode(212));
 
-	MyNode = SLL_GetNodeAt(List, 1);
-	dlp("MyNode: %d \n", MyNode->data);
-
-	dlp("Befor Remove\n");
+	dlp("Befor Insert\n");
 	SLL_ShowAll(List);
+	dlp("count: %d\n\n", SLL_GetNodeCount(List));
 
-	SLL_RemoveNode(&List, MyNode);
-	SLL_DestroyNode(&MyNode);
+	dlp("Insert new node\n\n");
+	SLL_InsertAfter(SLL_GetNodeAt(List, 1), SLL_CreateNewNode(300));
 	
-	dlp("Befor Remove\n");
+	dlp("After Insert\n");
 	SLL_ShowAll(List);
+	dlp("count: %d\n\n", SLL_GetNodeCount(List));
 
 	return 0;
 }
